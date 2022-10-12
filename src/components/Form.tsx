@@ -26,7 +26,7 @@ const Form = ({onNewSub} : FormProps) => {
       <input onChange={handleChange} type="text" name="email" value={inputValues.email} />
       <input onChange={handleChange} type="password" name="password" value={inputValues.password} />
       <input onChange={handleChange} type="number" name="old_member" value={inputValues.old_member} />
-      <input onChange={handleChange} type="text" name="name" value={inputValues.date_creation} />
+      <input onChange={handleChange} type="text" name="date" value={inputValues.date_creation} />
       <button>Save User!</button>
     </form>
   );

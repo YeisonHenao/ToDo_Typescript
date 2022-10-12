@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState } from "react"
 import { User } from './types';
-import './App.css';
-import Form from './components/Form';
+//import Form from './components/Form';
+import Login from "./components/Login";
 import Todo from './components/Todo';
 
 function App() {
@@ -11,11 +11,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hola mundo!</h1>
       {
         login === true
         ? <Todo />
-        : <Form onNewSub={setUser} />
+        : <Login onLogin={setUser} />
       }
     </div>
   );
