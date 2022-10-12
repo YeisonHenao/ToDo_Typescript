@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import { User } from './types';
 import './App.css';
+import Form from './components/Form';
+import Todo from './components/Todo';
 
 function App() {
+  const [login , setLogin] = useState<boolean>(false)
+  const [user,setUser] = useState<Array<User>>([])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hola mundo!</h1>
+      {
+        login === true
+        ? <Todo />
+        : <Form onNewSub={setUser} />
+      }
     </div>
   );
 }
