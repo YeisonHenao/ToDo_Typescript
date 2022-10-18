@@ -1,20 +1,3 @@
-//? Implementation for User
-export interface User{
-  id: number
-  name: string
-  user: string
-  email: string
-  password: string
-  old_member: number
-  date_creation: string
-  status: number
-}
-
-//? Type for new User
-export type FormUser = Omit<User, 'id' , 'status'>
-export type FormLogin = Omit<User, 'id', 'name', 'email','old_member','date_creation'>
-
-
 /*
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +16,10 @@ export interface ToDo{
   body: string
   priority: string
   category: string
-  user_creation: number,
+  value_min : number
+  value_max : number
+  value_now : number
+  user_creation: string
   status: number
 }
 

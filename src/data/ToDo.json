@@ -3,10 +3,39 @@
     "id":1,
     "date_creation":"12-10-2022",
     "title": "test To Do",
-    "body":"Hola mundo",
+    "body":"Hello world",
     "priority": "High",
-    "category": "Test",
-    "user_creation": 1,
+    "category": "Work",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 25,
+    "user_creation": "Yeison",
+    "status": 1
+  },
+  {
+    "id":2,
+    "date_creation":"17-10-2022",
+    "title": "First task",
+    "body":"Keep learning programming with typescript",
+    "priority": "High",
+    "category": "Learn",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 50,
+    "user_creation": "Yeison",
+    "status": 1
+  },
+  {
+    "id":3,
+    "date_creation":"15-10-2022",
+    "title": "Second task",
+    "body":"Make Info from Indice",
+    "priority": "Medium",
+    "category": "Work",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 30,
+    "user_creation": "Yeison",
     "status": 1
   }
 ]

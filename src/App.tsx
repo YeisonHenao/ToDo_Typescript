@@ -1,21 +1,18 @@
-import { useState } from "react"
-import { User } from './types';
-//import Form from './components/Form';
-import Login from "./components/Login";
 import Todo from './components/Todo';
+import logo from './assets/images/to-do-list.png'
 
 function App() {
-  const [login , setLogin] = useState<boolean>(false)
-  const [user,setUser] = useState<Array<User>>([])
-
 
   return (
     <div className="App">
-      {
-        login === true
-        ? <Todo />
-        : <Login onLogin={setUser} />
-      }
+      <div className='bg-dark text-white p-3 d-flex justify-content-between mb-3'>
+        <div className='d-flex justify-content-evenly'>
+          <img src={logo} width="40" alt="logo" />
+          <h5 className='m-2'>List ToDo</h5>
+        </div>
+        <button className='btn btn-primary'>Make a new Task</button>
+      </div>
+      <Todo />
     </div>
   );
 }
