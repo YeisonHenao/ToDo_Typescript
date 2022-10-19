@@ -1,4 +1,5 @@
 import Todo from "./components/Todo";
+import Form from "./components/Form";
 import { ToDo } from "./types";
 import logo from "./assets/images/to-do-list.png";
 import data from "./data/ToDo.json";
@@ -58,7 +59,7 @@ function App() {
       >
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className="modal-header">
+            {/* <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 New To Do
               </h1>
@@ -99,7 +100,8 @@ function App() {
               <button onClick={handleNewTodo} type="button" className="btn btn-primary">
                 Send message
               </button>
-            </div>
+            </div> */}
+            <Form />
           </div>
         </div>
       </div>
