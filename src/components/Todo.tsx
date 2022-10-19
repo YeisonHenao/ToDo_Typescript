@@ -1,18 +1,15 @@
-import { useState, useEffect } from "react"
 import { ToDo } from "../types"
-import data from "../data/ToDo.json"
 
-const Todo = () => {
-  const [listTodo, setListTodo] = useState<Array<ToDo>>([])
+interface Props{
+  ToDoList: ToDo[]
+}
 
-  useEffect(() => {
-    setListTodo(data)
-  }, [])
+const Todo = ({ToDoList}: Props) => {
 
   return (
-    <div>
+    <div className="container-lg">
       <div className="row">
-        {listTodo.map((to) => {
+        {ToDoList.map((to) => {
           return (
             <div className="col-md-4 col-sm-12 col-lg-4">
                 <div className="card">
