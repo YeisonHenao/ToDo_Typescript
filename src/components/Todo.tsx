@@ -10,7 +10,7 @@ const Todo = () => {
   }, [])
 
   return (
-    <div>
+    <div className="container-lg">
       <div className="row">
         {listTodo.map((to) => {
           return (
