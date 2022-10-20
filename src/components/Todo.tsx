@@ -11,11 +11,12 @@ const Todo = ({ToDoList}: Props) => {
       <div className="row">
         {ToDoList.map((to) => {
           return (
-            <div className="col-md-4 col-sm-12 col-lg-4">
+            <div className="col-md-4 col-sm-12 col-lg-4" key={to.id}>
                 <div className="card">
                   <div className="card-header d-flex justify-content-between ">
                     <h6 className="text-uppercase">{to.title}</h6>
                     <span className="badge bg-primary text-white text-center">
+                      <label htmlFor=""></label>
                       <span>{to.category}</span>
                     </span>
                     <span className="badge bg-danger text-white text-center">
@@ -31,8 +32,9 @@ const Todo = ({ToDoList}: Props) => {
                     <small className="text-muted">Status</small>
                     <div className="progress">
                       <div
-                        className="progress-bar w-25"
+                        className="progress-bar"
                         role="progressbar"
+                        style={{width: `${to.value_now}%`}}
                         aria-valuenow={to.value_now}
                         aria-valuemin={to.value_min}
                         aria-valuemax={to.value_max}
