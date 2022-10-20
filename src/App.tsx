@@ -12,30 +12,9 @@ function App() {
     setListTodo(data);
   }, []);
 
-  const getMaxID = () => {
-    return listToDo.map(param => {
-      return Math.max(param.id) + 1
-    })
+  const handleNewTask = (newTask: ToDo) : void => {
+    setListTodo(listToDo => [...listToDo,newTask])
   }
-
-  const handleNewTodo = () => {
-    setListTodo([
-      ...listToDo,
-      {
-        id: getMaxID()[0],
-        date_creation: "15-10-2022",
-        title: "Second task",
-        body: "Make Info from Indice",
-        priority: "Medium",
-        category: "Work",
-        value_min: 0,
-        value_max: 100,
-        value_now: 30,
-        user_creation: "Yeison",
-        status: 1,
-      },
-    ]);
-  };
 
   return (
     <div className="App">
@@ -52,16 +31,16 @@ function App() {
 
       {/* Modal view */}
       <div
-        className="modal fade"
+        className="modal modal-lg fade"
         id="exampleModal"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog ">
           <div className="modal-content">
-            {/* <div className="modal-header">
+            <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                New To Do
+                Add New Task
               </h1>
               <button
                 type="button"
@@ -71,37 +50,8 @@ function App() {
               ></button>
             </div>
             <div className="modal-body">
-              <form>
-                <div className="mb-3">
-                  <label className="col-form-label">Recipient:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="recipient-name"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="col-form-label">Message:</label>
-                  <textarea
-                    className="form-control"
-                    id="message-text"
-                  ></textarea>
-                </div>
-              </form>
+              <Form onNewTask={handleNewTask} />
             </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button onClick={handleNewTodo} type="button" className="btn btn-primary">
-                Send message
-              </button>
-            </div> */}
-            <Form />
           </div>
         </div>
       </div>
