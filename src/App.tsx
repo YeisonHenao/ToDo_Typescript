@@ -1,10 +1,12 @@
+// ? Importación de dependencias del componente
 import Todo from "./components/Todo";
-import Form from "./components/Form";
 import { ToDo } from "./types";
 import logo from "./assets/images/to-do-list.png";
 import data from "./data/ToDo.json";
 import { useEffect, useState } from "react";
+import Modal from "./components/Modal";
 
+// ? Declaración del componente
 function App() {
   const [listToDo, setListTodo] = useState<Array<ToDo>>([]);
 
@@ -27,34 +29,7 @@ function App() {
       </div>
       <Todo ToDoList={listToDo} />
 
-
-
-      {/* Modal view */}
-      <div
-        className="modal modal-lg fade"
-        id="exampleModal"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog ">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Add New Task
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <Form onNewTask={handleNewTask} />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal VoidCreate={handleNewTask} />
     </div>
   );
 }
