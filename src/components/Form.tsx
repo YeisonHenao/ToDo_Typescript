@@ -1,6 +1,7 @@
 import React from "react";
 import useFormNewTask from "../Hooks/useFormNewTask";
 import { ToDo } from "../types";
+import categories from '../data/Category.json'
 
 interface FormState {
   onNewTask: (newToDo: ToDo) => void;
@@ -11,6 +12,7 @@ const Form = ({ onNewTask }: FormState) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(value);
     dispatch({
       type: "change.value",
       payload: {
@@ -46,14 +48,14 @@ const Form = ({ onNewTask }: FormState) => {
           <div className="col-md-6 col-sm-12">
             <div className="form-group">
               <label>Category</label>
-              <input
-                type="text"
-                className="form-control form-control-lg"
-                name="category"
-                placeholder="category"
-                value={inputValues.category}
-                onChange={handleChange}
-              />
+              <select name="category" className="form-select">
+                <option selected>Select a category</option>
+                {
+                  categories.map(category => {
+                    return <option value={category.value}>{category.label}</option>
+                  })
+                }
+              </select>
             </div>
           </div>
         </div>
@@ -107,11 +109,11 @@ const Form = ({ onNewTask }: FormState) => {
           <div className="col-md-6">
             <div className="form-group">
               <label>Description</label>
-              <input 
-                type="text" 
-                name="body" 
+              <input
+                type="text"
+                name="body"
                 className="form-control form-control-lg"
-                placeholder="description" 
+                placeholder="description"
                 value={inputValues.body}
                 onChange={handleChange}
               />
