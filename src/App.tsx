@@ -14,6 +14,7 @@ function App() {
     setListTodo(data);
   }, []);
 
+  //? Funcion para actualizar el listado de tareas
   const handleNewTask = (newTask: ToDo) : void => {
     setListTodo(listToDo => [...listToDo,newTask])
   }
