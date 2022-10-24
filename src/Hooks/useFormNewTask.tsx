@@ -1,12 +1,17 @@
 import { useReducer } from "react";
 import { ToDo } from "../types";
+import data from '../data/ToDo.json'
 
 interface FormState{
   inputValues: ToDo
 }
 
+const getMaxId = () => {
+  return Math.max(...data.map(x => x.id)) + 1
+}
+
 const INITIAL_STATE = {
-  "id":0,
+  "id":getMaxId(),
   "date_creation":"",
   "title": "",
   "body":"",
@@ -14,7 +19,7 @@ const INITIAL_STATE = {
   "category": "",
   "value_min": 0,
   "value_max": 100,
-  "value_now": 50,
+  "value_now": 0,
   "user_creation": "",
   "status": 1
 }
