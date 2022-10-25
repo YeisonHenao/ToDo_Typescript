@@ -1,11 +1,12 @@
-export enum priority {
-  high='High' ,
-  medium = 'Medium',
-  lower =  'Lower'
-}
-
-export enum category {
+export enum Category {
   Work = 'Work',
   Learn = 'Learn',
   Any = 'Any'
 }
+
+export enum Priority {
+  High = 'High',
+  Medium = 'Medium',
+  Lower = 'Lower'
+}
+

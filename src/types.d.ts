@@ -23,3 +23,4 @@ export interface ToDo{
   status: number
 }
 
+export type NewToDo = Omit<ToDo, 'id'>
