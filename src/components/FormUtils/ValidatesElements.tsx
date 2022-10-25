@@ -40,11 +40,11 @@ const isNumber = (number: number) : boolean => {
 }
 
 const isCategory = (param: any): boolean => {
-  return Object.values(Category).includes(param[0])
+  return Object.values(Category).includes(param)
 }
 
 const isPriority = (param: any): boolean => {
-  return Object.values(Priority).includes(param[0])
+  return Object.values(Priority).includes(param)
 }
 
 const validateElements = (object : any ) => {

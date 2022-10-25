@@ -40,7 +40,7 @@ const useReducerForm = (state: FormState["inputValues"] , action : useFormReduce
       const {inputValue , inputName} = action.payload
       return{
         ...state,
-        [inputName]: [inputValue]
+        [inputName]: inputValue
       }
     case "clear":
       return INITIAL_STATE

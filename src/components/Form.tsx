@@ -1,9 +1,6 @@
 import useFormNewTask from "../Hooks/useFormNewTask";
 import validateElements from './FormUtils/ValidatesElements'
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import Swal from 'sweetalert2'
-import 'sweetalert2/src/sweetalert2.scss'
+import AlertComponent from "./AlertComponent";
 import { ToDo } from "../types";
 import categories from "../data/Category.json";
 import priorities from '../data/Priority.json'
@@ -14,8 +11,9 @@ interface FormState {
 const Form = ({ onNewTask }: FormState) => {
   const [inputValues, dispatch] = useFormNewTask();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | any> ) => {
-    const { name, value } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | any > ) => {
+    const { name, value } = e?.target;
+    console.log(name + ' ' + value)
     dispatch({
       type: "change.value",
       payload: {
@@ -32,25 +30,15 @@ const Form = ({ onNewTask }: FormState) => {
       validateElements(inputValues)
       onNewTask(inputValues);
       dispatch({ type: "clear" });
-      Swal.fire({
-        title: 'Task save!',
-        text: 'Do you want to continue',
-        icon: 'success',
-        confirmButtonText: 'Cool'
-      })
+      AlertComponent.Success()
     }catch(e){
-      Swal.fire({
-        title: 'Error!',
-        text: 'Do you want to continue',
-        icon: 'error',
-        confirmButtonText: 'Cool'
-      })
+      AlertComponent.Error()
     }
   };
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form autoComplete="false" onSubmit={handleSubmit}>
         <div className="row">
           <div className="d-flex justify-content-between">
             <div className="col-md-6 pe-2 ps-2">
@@ -68,7 +56,7 @@ const Form = ({ onNewTask }: FormState) => {
               <div className="form-group">
                 <label>Category</label>
                 <select className="form-select" name="category" onChange={handleChange} value={inputValues.category}>
-                  <option value="Any" selected>Select a category</option>
+                  <option defaultValue="Any" selected>Select a category</option>
                   {
                     categories.map(category => {
                       return <option key={category.label} value={category.value}>{category.label}</option>
@@ -86,7 +74,7 @@ const Form = ({ onNewTask }: FormState) => {
               <div className="form-group">
                 <label>Priority</label>
                 <select name="priority" className="form-select" onChange={handleChange} value={inputValues.priority}>
-                  <option value="Any" selected>Select a priority</option>
+                  <option defaultValue="Any" selected>Select a priority</option>
                   {
                     priorities.map(priority => {
                       return <option key={priority.label} value={priority.value}>{priority.label}</option>
@@ -115,21 +103,14 @@ const Form = ({ onNewTask }: FormState) => {
             <div className="col-md-6 pe-2 ps-2">
               <div className="form-group">
                 <label>Date</label>
-                <DatePicker 
-                  dateFormat="dd/MM/yyyy"
-                  name="date_creation" 
-                  className="form-control" 
-                  selected={new Date()} 
-                  onSelect={handleChange} 
-                  value={inputValues.date_creation} />
-                {/* <input
+                <input
                   type="text"
                   className="form-control form-control-lg"
                   name="date_creation"
                   placeholder="dd/MM/YYYY"
                   value={inputValues.date_creation}
                   onChange={handleChange}
-                /> */}
+                /> 
               </div>
             </div>
             <div className="col-md-6 pe-2 ps-2">
