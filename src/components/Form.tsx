@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import useFormNewTask from "../Hooks/useFormNewTask";
+import validateElements from './FormUtils/ValidatesElements'
+import AlertComponent from "./AlertComponent";
 import { ToDo } from "../types";
 import categories from "../data/Category.json";
 import priorities from '../data/Priority.json'
-
 interface FormState {
   onNewTask: (newToDo: ToDo) => void;
 }
@@ -11,8 +11,9 @@ interface FormState {
 const Form = ({ onNewTask }: FormState) => {
   const [inputValues, dispatch] = useFormNewTask();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | any>) => {
-    const { name, value } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | any > ) => {
+    const { name, value } = e?.target;
+    console.log(name + ' ' + value)
     dispatch({
       type: "change.value",
       payload: {
@@ -24,14 +25,20 @@ const Form = ({ onNewTask }: FormState) => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onNewTask(inputValues);
-    dispatch({ type: "clear" });
-    console.log(inputValues)
+    debugger
+    try{
+      validateElements(inputValues)
+      onNewTask(inputValues);
+      dispatch({ type: "clear" });
+      AlertComponent.Success()
+    }catch(e){
+      AlertComponent.Error()
+    }
   };
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form autoComplete="false" onSubmit={handleSubmit}>
         <div className="row">
           <div className="d-flex justify-content-between">
             <div className="col-md-6 pe-2 ps-2">
@@ -49,6 +56,7 @@ const Form = ({ onNewTask }: FormState) => {
               <div className="form-group">
                 <label>Category</label>
                 <select className="form-select" name="category" onChange={handleChange} value={inputValues.category}>
+                  <option defaultValue="Any" selected>Select a category</option>
                   {
                     categories.map(category => {
                       return <option key={category.label} value={category.value}>{category.label}</option>
@@ -66,6 +74,7 @@ const Form = ({ onNewTask }: FormState) => {
               <div className="form-group">
                 <label>Priority</label>
                 <select name="priority" className="form-select" onChange={handleChange} value={inputValues.priority}>
+                  <option defaultValue="Any" selected>Select a priority</option>
                   {
                     priorities.map(priority => {
                       return <option key={priority.label} value={priority.value}>{priority.label}</option>
@@ -101,7 +110,7 @@ const Form = ({ onNewTask }: FormState) => {
                   placeholder="dd/MM/YYYY"
                   value={inputValues.date_creation}
                   onChange={handleChange}
-                />
+                /> 
               </div>
             </div>
             <div className="col-md-6 pe-2 ps-2">
